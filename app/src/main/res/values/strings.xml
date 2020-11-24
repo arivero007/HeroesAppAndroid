@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HeroesApp</string>
+    <string name="name">Nombre</string>
+    <string name="image_error">Error</string>
+    <string name="loading">Cargando</string>
+</resources>
