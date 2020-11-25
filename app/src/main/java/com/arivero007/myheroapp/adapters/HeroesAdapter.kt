@@ -43,7 +43,7 @@ class HeroesAdapter(private val hud: LoadingDialog, private val context: Context
 
             val intent = Intent( context, HeroeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            intent.putExtra("heroe", heroe)
+            intent.putExtra("heroeId", heroe.id)
             context.startActivity(intent)
 
         }

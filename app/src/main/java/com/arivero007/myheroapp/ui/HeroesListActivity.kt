@@ -22,7 +22,7 @@ class HeroesListActivity : AppCompatActivity() {
 
     private val TAG = "HeroesListActivity: "
 
-    private val heroesModel: HeroesViewModel by viewModels()
+    private val heroesModel: HeroesListViewModel by viewModels()
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: HeroesAdapter
@@ -41,8 +41,10 @@ class HeroesListActivity : AppCompatActivity() {
             if(it != null){
                 if (!this::viewAdapter.isInitialized){
                     setUpRecyclerView()
+                    LoadingDialog.getInstance(this).dismissLoadingDialog()
                 }else{
                     viewAdapter.notifyDataSetChanged()
+                    LoadingDialog.getInstance(this).dismissLoadingDialog()
                 }
             }
         })
@@ -52,10 +54,13 @@ class HeroesListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         LoadingDialog.getInstance(this).dismissLoadingDialog()
-        //Listen for model
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LoadingDialog.getInstance(this).dismissLoadingDialog()
     }
 
     //REST
@@ -63,6 +68,8 @@ class HeroesListActivity : AppCompatActivity() {
 
         val ts = System.currentTimeMillis()/1000
         val hash = Utils.getMD5(ts.toString() + Constants.apiKeyPri + Constants.apiKeyPu)
+
+        LoadingDialog.getInstance(this).startLoadingDialog()
 
         val retrofit = RetrofitBuilder
         retrofit.apiService.getListOHeroes(ts.toString(),Constants.apiKeyPu, hash).enqueue(
@@ -85,7 +92,7 @@ class HeroesListActivity : AppCompatActivity() {
     }
 
     //RecyclerView
-    fun setUpRecyclerView(){
+    private fun setUpRecyclerView(){
         recyclerView = binding.heroesRecyclerview
         viewManager = LinearLayoutManager(this)
         viewAdapter = HeroesAdapter(LoadingDialog.getInstance(this), this, heroesModel.heroes.value!!.data.results)

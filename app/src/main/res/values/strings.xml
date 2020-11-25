@@ -3,4 +3,7 @@
     <string name="name">Nombre</string>
     <string name="image_error">Error</string>
     <string name="loading">Cargando</string>
+    <string name="no_data">No se han recibido datos</string>
+    <string name="no_hero_name">Héroe sin nombre</string>
+    <string name="no_hero_description">No hay descripción</string>
 </resources>

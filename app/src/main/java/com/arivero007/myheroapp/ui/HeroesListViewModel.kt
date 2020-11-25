@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.arivero007.myheroapp.resources.HeroesList
 
-class HeroesViewModel: ViewModel() {
+class HeroesListViewModel: ViewModel() {
 
     private val _heroes = MutableLiveData<HeroesList>()
     val heroes: LiveData<HeroesList>
