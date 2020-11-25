@@ -29,3 +29,5 @@ En la primera se puede filtrar por nombre y actualizar la lista.
   Para probar diferentes servicios web se ha realizado la llamada para obtener el detalle del personaje en la segunda pantalla,
   pero ésta habría sido innecesaria ya que en el primer WS obtenía toda la información y podía reutilizarla.
   
+PD: La he llamado HeroesApp, pero despues de ver mejor la lista de personajes quizas tenía que haberse llamado MarvelApp.
+  
