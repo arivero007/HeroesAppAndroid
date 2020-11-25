@@ -22,6 +22,8 @@ data class Heroe(
     val name: String,
     @SerializedName("description")
     val description: String,
+    @SerializedName("modified")
+    val modified: String,
     @SerializedName("thumbnail")
     val thumbnail: Thumbnail
 ): Serializable

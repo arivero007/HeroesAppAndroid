@@ -15,7 +15,7 @@ import retrofit2.Response
 
 class HeroeActivity : AppCompatActivity() {
 
-    private val TAG = "HeroesActivity: "
+    private val TAG = "HeroeActivity: "
 
     private val heroeModel: HeroeViewModel by viewModels()
     private lateinit var binding: ActivityHeroeBinding
@@ -32,7 +32,9 @@ class HeroeActivity : AppCompatActivity() {
         heroeModel.heroe.observe(this, {
             if(it != null){
                 setHeroeData()
+            }else{
                 LoadingDialog.getInstance(this).dismissLoadingDialog()
+                Utils.showAlert(this, getString(R.string.no_data))
             }
         })
     }
@@ -52,9 +54,11 @@ class HeroeActivity : AppCompatActivity() {
 
         binding.heroeName.text = heroeModel.heroe.value?.name ?: getString(R.string.no_hero_name)
         val imgUrl = heroeModel.heroe.value?.thumbnail?.path + "." + heroeModel.heroe.value?.thumbnail?.extension
+        Picasso.get().setIndicatorsEnabled(true)
         Picasso.get().load(imgUrl).into(binding.heroeImage)
         binding.heroeDescription.text = heroeModel.heroe.value?.description ?: getString(R.string.no_hero_description)
-
+        binding.heroeModified.text = heroeModel.heroe.value?.modified
+        LoadingDialog.getInstance(this).dismissLoadingDialog()
     }
 
     //REST
