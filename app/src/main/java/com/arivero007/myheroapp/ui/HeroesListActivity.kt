@@ -14,6 +14,7 @@ import com.arivero007.myheroapp.adapters.HeroesAdapter
 import com.arivero007.myheroapp.databinding.ActivityMainBinding
 import com.arivero007.myheroapp.network.RetrofitBuilder
 import com.arivero007.myheroapp.resources.*
+import com.arivero007.myheroapp.resources.Utils.Companion.addApiKeys
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,12 +68,12 @@ class HeroesListActivity : AppCompatActivity() {
     private fun downloadListOfHeroes(){
 
         val ts = System.currentTimeMillis()/1000
-        val hash = Utils.getMD5(ts.toString() + Constants.apiKeyPri + Constants.apiKeyPu)
+        val hash = Utils.getMD5(ts.toString().addApiKeys())
 
         LoadingDialog.getInstance(this).startLoadingDialog()
 
         val retrofit = RetrofitBuilder
-        retrofit.apiService.getListOHeroes(ts.toString(),Constants.apiKeyPu, hash).enqueue(
+        retrofit.apiService.getListOHeroes(ts.toString(), Constants.apiKeyPu, hash).enqueue(
                 object: Callback<HeroesList> {
                     override fun onResponse(call: Call<HeroesList>, response: Response<HeroesList>) {
                         val res = response.body()
