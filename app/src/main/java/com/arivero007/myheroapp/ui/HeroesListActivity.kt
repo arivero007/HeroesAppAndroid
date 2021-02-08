@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class HeroesListActivity : AppCompatActivity() {
 
-    private val TAG = "HeroesListActivity: "
+    private val tagName = "HeroesListActivity: "
 
     private val heroesModel: HeroesListViewModel by viewModels()
 
@@ -42,15 +42,13 @@ class HeroesListActivity : AppCompatActivity() {
             if(it != null){
                 if (!this::viewAdapter.isInitialized){
                     setUpRecyclerView()
-                    LoadingDialog.getInstance(this).dismissLoadingDialog()
                 }else{
                     viewAdapter.notifyDataSetChanged()
-                    LoadingDialog.getInstance(this).dismissLoadingDialog()
                 }
             }
         })
 
-        downloadListOfHeroes()
+        heroesModel.downloadListOfHeroes(this)
     }
 
     override fun onResume() {
@@ -62,34 +60,6 @@ class HeroesListActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         LoadingDialog.getInstance(this).dismissLoadingDialog()
-    }
-
-    //REST
-    private fun downloadListOfHeroes(){
-
-        val ts = System.currentTimeMillis()/1000
-        val hash = Utils.getMD5(ts.toString().addApiKeys())
-
-        LoadingDialog.getInstance(this).startLoadingDialog()
-
-        val retrofit = RetrofitBuilder
-        retrofit.apiService.getListOHeroes(ts.toString(), Constants.apiKeyPu, hash).enqueue(
-                object: Callback<HeroesList> {
-                    override fun onResponse(call: Call<HeroesList>, response: Response<HeroesList>) {
-                        val res = response.body()
-
-                        Log.d(TAG, "Response correct!")
-
-                        if (res != null){
-                            heroesModel.setHeroes(res)
-                        }
-                    }
-
-                    override fun onFailure(call: Call<HeroesList>, t: Throwable) {
-                        Log.d(TAG, "Web Service failed!")
-                    }
-
-                })
     }
 
     //RecyclerView
@@ -132,7 +102,7 @@ class HeroesListActivity : AppCompatActivity() {
                 true
             }
             R.id.refresh_item ->{
-                downloadListOfHeroes()
+                heroesModel.downloadListOfHeroes(this)
                 true
             }
             else -> {

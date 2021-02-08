@@ -16,7 +16,7 @@ import retrofit2.Response
 
 class HeroeActivity : AppCompatActivity() {
 
-    private val TAG = "HeroeActivity: "
+    private val tagName = "HeroeActivity: "
 
     private val heroeModel: HeroeViewModel by viewModels()
     private lateinit var binding: ActivityHeroeBinding
@@ -45,7 +45,7 @@ class HeroeActivity : AppCompatActivity() {
         //Load data if information received
         if(intent.hasExtra("heroeId")){
             val heroeId = intent.getIntExtra("heroeId", 0)
-            downloadHeroe(heroeId)
+            heroeModel.downloadHeroe(heroeId, this)
         }else{
             Utils.showAlert(this, getString(R.string.no_data))
         }
@@ -62,33 +62,4 @@ class HeroeActivity : AppCompatActivity() {
         LoadingDialog.getInstance(this).dismissLoadingDialog()
     }
 
-    //REST
-    private fun downloadHeroe(heroeId: Int){
-
-        val ts = System.currentTimeMillis()/1000
-        val hash = Utils.getMD5(ts.toString().addApiKeys())
-
-        LoadingDialog.getInstance(this).startLoadingDialog()
-
-        val retrofit = RetrofitBuilder
-        retrofit.apiService.getHeroeInfo(heroeId, ts.toString(), Constants.apiKeyPu, hash).enqueue(
-                object: Callback<HeroesList> {
-                    override fun onResponse(call: Call<HeroesList>, response: Response<HeroesList>) {
-                        val res = response.body()
-                        Log.d(TAG, "Response correct!")
-                        if (res != null){
-                            if(res.data.results.count() > 0){
-                                heroeModel.setHeroe(res.data.results.first())
-                            }else{
-                                Utils.showAlert(this@HeroeActivity, getString(R.string.no_data))
-                            }
-                        }
-                    }
-
-                    override fun onFailure(call: Call<HeroesList>, t: Throwable) {
-                        Log.d(TAG, "Web Service failed!")
-                    }
-
-                })
-    }
 }
