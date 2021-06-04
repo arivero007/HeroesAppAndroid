@@ -10,9 +10,9 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.arivero007.myheroapp.databinding.HeroesRecyclerviewBinding
-import com.arivero007.myheroapp.resources.Heroe
+import com.arivero007.myheroapp.model.Heroe
 import com.arivero007.myheroapp.resources.LoadingDialog
-import com.arivero007.myheroapp.ui.HeroeActivity
+import com.arivero007.myheroapp.ui.activities.HeroeActivity
 import java.util.*
 import kotlin.collections.ArrayList
 

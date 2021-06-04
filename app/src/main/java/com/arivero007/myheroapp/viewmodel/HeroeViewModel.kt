@@ -1,9 +1,9 @@
-package com.arivero007.myheroapp.ui
+package com.arivero007.myheroapp.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.arivero007.myheroapp.resources.Heroe
+import com.arivero007.myheroapp.model.Heroe
 
 class HeroeViewModel: ViewModel() {
 

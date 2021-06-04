@@ -1,4 +1,4 @@
-package com.arivero007.myheroapp.ui
+package com.arivero007.myheroapp.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,8 +6,10 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.arivero007.myheroapp.R
 import com.arivero007.myheroapp.databinding.ActivityHeroeBinding
+import com.arivero007.myheroapp.model.HeroesList
 import com.arivero007.myheroapp.network.RetrofitBuilder
 import com.arivero007.myheroapp.resources.*
+import com.arivero007.myheroapp.viewmodel.HeroeViewModel
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -70,7 +72,7 @@ class HeroeActivity : AppCompatActivity() {
         LoadingDialog.getInstance(this).startLoadingDialog()
 
         val retrofit = RetrofitBuilder
-        retrofit.apiService.getHeroeInfo(heroeId, ts.toString(), Constants.apiKeyPu, hash).enqueue(
+       /* retrofit.apiService.getHeroeInfo(heroeId, ts.toString(), Constants.apiKeyPu, hash).enqueue(
                 object: Callback<HeroesList> {
                     override fun onResponse(call: Call<HeroesList>, response: Response<HeroesList>) {
                         val res = response.body()
@@ -88,6 +90,6 @@ class HeroeActivity : AppCompatActivity() {
                         Log.d(TAG, "Web Service failed!")
                     }
 
-                })
+                })*/
     }
 }

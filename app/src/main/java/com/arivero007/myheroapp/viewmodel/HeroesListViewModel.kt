@@ -1,11 +1,14 @@
-package com.arivero007.myheroapp.ui
+package com.arivero007.myheroapp.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.arivero007.myheroapp.resources.HeroesList
+import com.arivero007.myheroapp.model.HeroesList
+import com.arivero007.myheroapp.repositories.HeroesRepository
 
-class HeroesListViewModel: ViewModel() {
+class HeroesListViewModel(
+    private val repository: HeroesRepository
+): ViewModel() {
 
     private val _heroes = MutableLiveData<HeroesList>()
     val heroes: LiveData<HeroesList>
