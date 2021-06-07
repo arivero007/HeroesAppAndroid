@@ -4,9 +4,8 @@ import android.app.Activity
 import androidx.appcompat.app.AlertDialog
 import com.arivero007.myheroapp.R
 
-class LoadingDialog(activity: Activity) {
+class LoadingDialog(private var activity: Activity) {
 
-    var activity: Activity = activity
     lateinit var dialog: AlertDialog
 
     companion object {
@@ -22,8 +21,8 @@ class LoadingDialog(activity: Activity) {
 
     fun startLoadingDialog(){
         if(!this::dialog.isInitialized){
-            var builder = AlertDialog.Builder(activity)
-            var inflater = activity.layoutInflater
+            val builder = AlertDialog.Builder(activity)
+            val inflater = activity.layoutInflater
             builder.setView(inflater.inflate(R.layout.loading_dialog, null))
             builder.setCancelable(false)
 

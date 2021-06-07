@@ -15,8 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyHeroApp"
         tools:targetApi="m">
-        <activity android:name=".ui.activities.HeroeActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.HeroeActivity" />
         <activity android:name=".ui.activities.HeroesListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,6 @@
 package com.arivero007.myheroapp.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -11,22 +10,24 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.arivero007.myheroapp.databinding.HeroesRecyclerviewBinding
 import com.arivero007.myheroapp.model.Heroe
-import com.arivero007.myheroapp.resources.LoadingDialog
-import com.arivero007.myheroapp.ui.activities.HeroeActivity
+import com.arivero007.myheroapp.model.HeroeListener
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HeroesAdapter(private val hud: LoadingDialog, private val context: Context, private val heroes: List<Heroe>): RecyclerView.Adapter<HeroesAdapter.HeroesHolder>(),
+class HeroesAdapter(private val heroListener: HeroeListener): RecyclerView.Adapter<HeroesAdapter.HeroesHolder>(),
     Filterable {
 
     private lateinit var heroesHolder: HeroesHolder
+    private lateinit var context: Context
+    var heroes = ArrayList<Heroe>()
     var filteredItems = heroes
 
     private lateinit var binding: HeroesRecyclerviewBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroesHolder {
 
-        binding = HeroesRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        context = parent.context
+        binding = HeroesRecyclerviewBinding.inflate(LayoutInflater.from(context), parent, false)
         heroesHolder = HeroesHolder(binding)
 
         return heroesHolder
@@ -34,18 +35,11 @@ class HeroesAdapter(private val hud: LoadingDialog, private val context: Context
 
     override fun onBindViewHolder(holder: HeroesHolder, position: Int) {
 
-        val heroe = filteredItems[position]
+        val item = filteredItems[position]
 
-        holder.name.text = heroe.name
+        holder.name.text = item.name
         holder.heroe.setOnClickListener {
-
-            hud.startLoadingDialog()
-
-            val intent = Intent( context, HeroeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            intent.putExtra("heroeId", heroe.id)
-            context.startActivity(intent)
-
+            heroListener.onHeroClick(item.id)
         }
     }
 
@@ -64,7 +58,7 @@ class HeroesAdapter(private val hud: LoadingDialog, private val context: Context
                     val temp = ArrayList<Heroe>()
 
                     for (item in heroes) {
-                        if (item.name.toLowerCase(Locale.ROOT).contains(text.toString())){
+                        if (item.name.lowercase(Locale.ROOT).contains(text.toString())){
                             temp.add(item)
                         }
                     }
@@ -77,11 +71,19 @@ class HeroesAdapter(private val hud: LoadingDialog, private val context: Context
 
             override fun publishResults(text: CharSequence?, results: FilterResults?) {
 
-                filteredItems = results?.values as List<Heroe>
+                filteredItems = results?.values as ArrayList<Heroe>
                 notifyDataSetChanged()
             }
 
         }
+    }
+
+    fun updateData(data: List<Heroe>){
+        heroes.clear()
+        filteredItems.clear()
+        heroes.addAll(data)
+        filteredItems.addAll(data)
+        notifyDataSetChanged()
     }
 
     class HeroesHolder(binding: HeroesRecyclerviewBinding): RecyclerView.ViewHolder(binding.root){
