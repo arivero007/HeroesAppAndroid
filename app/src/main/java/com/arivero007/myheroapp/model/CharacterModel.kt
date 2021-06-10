@@ -2,16 +2,16 @@ package com.arivero007.myheroapp.model
 
 import java.io.Serializable
 
-data class HeroesList(
+data class CharactersList(
     val data: Characters
 ):Serializable
 
 data class Characters(
     val count: Int,
-    val results: List<Heroe>
+    val results: List<Character>
 ):Serializable
 
-data class Heroe(
+data class Character(
     val id: Int,
     val name: String,
     val description: String,

@@ -8,14 +8,14 @@
         android:id="@+id/heroesListFragment"
         android:name="com.arivero007.myheroapp.ui.fragments.HeroesListFragment"
         android:label="fragment_heores_list"
-        tools:layout="@layout/fragment_heroes_list" >
+        tools:layout="@layout/fragment_characters_list" >
         <action
             android:id="@+id/action_HeroesListFragment_to_heroeFragment"
             app:destination="@id/heroeFragment" />
     </fragment>
     <fragment
         android:id="@+id/heroeFragment"
-        android:name="com.arivero007.myheroapp.ui.fragments.HeroeFragment"
+        android:name="com.arivero007.myheroapp.ui.fragments.CharacterFragment"
         android:label="fragment_heroe"
-        tools:layout="@layout/fragment_heroe" />
+        tools:layout="@layout/fragment_character" />
 </navigation>

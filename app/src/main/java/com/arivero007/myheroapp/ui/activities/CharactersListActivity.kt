@@ -2,32 +2,21 @@ package com.arivero007.myheroapp.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import androidx.activity.viewModels
-import androidx.appcompat.widget.SearchView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arivero007.myheroapp.R
-import com.arivero007.myheroapp.adapters.HeroesAdapter
+import com.arivero007.myheroapp.adapters.CharactersAdapter
 import com.arivero007.myheroapp.databinding.ActivityMainBinding
-import com.arivero007.myheroapp.model.HeroesList
-import com.arivero007.myheroapp.network.RetrofitBuilder
-import com.arivero007.myheroapp.resources.*
-import com.arivero007.myheroapp.viewmodel.HeroesListViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.arivero007.myheroapp.viewmodel.CharactersListViewModel
 
-class HeroesListActivity : AppCompatActivity() {
+class CharactersListActivity : AppCompatActivity() {
 
     private val TAG = "HeroesListActivity: "
 
-    private val heroesModel: HeroesListViewModel by viewModels()
+    private val charactersModel: CharactersListViewModel by viewModels()
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: HeroesAdapter
+    private lateinit var viewAdapter: CharactersAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     private lateinit var binding: ActivityMainBinding

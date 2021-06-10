@@ -1,4 +1,4 @@
-package com.arivero007.myheroapp.network
+package com.arivero007.myheroapp.data.network
 
 import okhttp3.ResponseBody
 

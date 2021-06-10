@@ -17,24 +17,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:theme="@style/MyHeroToolbar"
             app:menu="@menu/main_menu">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name" />
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/cardview_light_background"/>
         </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:queryHint="@string/search"
+            app:iconifiedByDefault="false"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        </androidx.appcompat.widget.SearchView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/heroes_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="0dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

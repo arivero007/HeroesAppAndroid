@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.arivero007.myheroapp.network.RemoteDataSource
-import com.arivero007.myheroapp.repositories.BaseRepository
+import com.arivero007.myheroapp.data.UserPreferences
+import com.arivero007.myheroapp.data.network.RemoteDataSource
+import com.arivero007.myheroapp.data.repositories.BaseRepository
 import com.arivero007.myheroapp.viewmodel.ViewModelFactory
 
 abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R: BaseRepository> : Fragment() {
 
+    protected lateinit var userPreferences: UserPreferences
     protected lateinit var binding: B
     protected val remoteDataSource = RemoteDataSource()
     protected lateinit var viewModel: VM
@@ -23,6 +25,7 @@ abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R: BaseRepository> : 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        userPreferences = UserPreferences(requireContext())
         binding = getFragmentBinding(inflater, container)
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory).get(getViewModel())

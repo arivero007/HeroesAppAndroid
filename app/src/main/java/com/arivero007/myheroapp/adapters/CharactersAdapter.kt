@@ -9,17 +9,17 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.arivero007.myheroapp.databinding.HeroesRecyclerviewBinding
-import com.arivero007.myheroapp.model.Heroe
-import com.arivero007.myheroapp.model.HeroeListener
+import com.arivero007.myheroapp.model.Character
+import com.arivero007.myheroapp.model.CharacterListener
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HeroesAdapter(private val heroListener: HeroeListener): RecyclerView.Adapter<HeroesAdapter.HeroesHolder>(),
+class CharactersAdapter(private val heroListener: CharacterListener): RecyclerView.Adapter<CharactersAdapter.HeroesHolder>(),
     Filterable {
 
     private lateinit var heroesHolder: HeroesHolder
     private lateinit var context: Context
-    var heroes = ArrayList<Heroe>()
+    var heroes = ArrayList<Character>()
     var filteredItems = heroes
 
     private lateinit var binding: HeroesRecyclerviewBinding
@@ -55,10 +55,10 @@ class HeroesAdapter(private val heroListener: HeroeListener): RecyclerView.Adapt
                 filteredItems = if(searchText.isEmpty()){
                     heroes
                 }else{
-                    val temp = ArrayList<Heroe>()
+                    val temp = ArrayList<Character>()
 
                     for (item in heroes) {
-                        if (item.name.lowercase(Locale.ROOT).contains(text.toString())){
+                        if (item.name.toLowerCase(Locale.ROOT).contains(text.toString())){
                             temp.add(item)
                         }
                     }
@@ -69,20 +69,19 @@ class HeroesAdapter(private val heroListener: HeroeListener): RecyclerView.Adapt
                 return results
             }
 
+            @Suppress("UNCHECKED_CAST")
             override fun publishResults(text: CharSequence?, results: FilterResults?) {
-
-                filteredItems = results?.values as ArrayList<Heroe>
+                filteredItems = results?.values as ArrayList<Character>
                 notifyDataSetChanged()
             }
 
         }
     }
 
-    fun updateData(data: List<Heroe>){
+    fun updateData(data: List<Character>){
         heroes.clear()
         filteredItems.clear()
         heroes.addAll(data)
-        filteredItems.addAll(data)
         notifyDataSetChanged()
     }
 

@@ -1,7 +1,7 @@
-package com.arivero007.myheroapp.repositories
+package com.arivero007.myheroapp.data.repositories
 
 import com.arivero007.myheroapp.model.AuthModel
-import com.arivero007.myheroapp.network.Resource
+import com.arivero007.myheroapp.data.network.Resource
 import com.arivero007.myheroapp.resources.Constants
 import com.arivero007.myheroapp.resources.Utils
 import kotlinx.coroutines.Dispatchers

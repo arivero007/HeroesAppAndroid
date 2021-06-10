@@ -1,12 +1,14 @@
 <resources>
-    <string name="app_name">HeroesApp</string>
+    <string name="app_name">MarvelApp</string>
     <string name="name">Nombre</string>
     <string name="image_error">Error</string>
     <string name="loading">Cargando</string>
     <string name="no_data">No se han recibido datos</string>
-    <string name="no_hero_name">Héroe sin nombre</string>
+    <string name="no_hero_name">Personaje sin nombre</string>
     <string name="no_hero_description">No hay descripción</string>
     <string name="last_change">Ultima modificación</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Buscar</string>
+    <string name="update">Actualizar</string>
 </resources>

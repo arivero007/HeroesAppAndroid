@@ -5,6 +5,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/colorWhite</item>
+    </style>
+
+    <style name="MyHeroToolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Customize your theme here. -->
+        <item name="actionMenuTextColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorOrange</item>
     </style>
 
 </resources>

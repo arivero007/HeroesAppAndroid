@@ -1,6 +1,6 @@
 package com.arivero007.myheroapp.model
 
-interface HeroeListener {
+interface CharacterListener {
 
     fun onHeroClick(id: Int)
 }

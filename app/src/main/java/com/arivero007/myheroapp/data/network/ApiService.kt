@@ -1,6 +1,6 @@
-package com.arivero007.myheroapp.network
+package com.arivero007.myheroapp.data.network
 
-import com.arivero007.myheroapp.model.HeroesList
+import com.arivero007.myheroapp.model.CharactersList
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.*
@@ -12,7 +12,7 @@ interface ApiService {
         @Query("ts") ts: String?,
         @Query("apikey") apikey: String?,
         @Query("hash") hash: String?
-    ): HeroesList
+    ): CharactersList
 
     @GET("public/characters/{characterId}")
     suspend fun getHeroeInfo(
@@ -20,5 +20,5 @@ interface ApiService {
         @Query("ts") ts: String?,
         @Query("apikey") apikey: String?,
         @Query("hash") hash: String?
-    ): HeroesList
+    ): CharactersList
 }

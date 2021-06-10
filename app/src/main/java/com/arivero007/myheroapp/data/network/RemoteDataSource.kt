@@ -1,4 +1,4 @@
-package com.arivero007.myheroapp.network
+package com.arivero007.myheroapp.data.network
 
 import com.arivero007.myheroapp.resources.Constants
 import okhttp3.OkHttpClient
