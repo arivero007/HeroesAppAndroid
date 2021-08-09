@@ -2,7 +2,8 @@
 
 Aplicación para probar la API de Marvel, solicitando un listado de personajes y visualizando su información. 
 
-
+* La rama MVVM hace lo mismo que la master pero aplicando la arquitectura MVVM :)
+* 
 Consta de 2 pantallas: la primera, en la que se visualiza el listado de personajes obtenido y la segunda, en la que
 se detalla la información del personaje seleccionado.
 
